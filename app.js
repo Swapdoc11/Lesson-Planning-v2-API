@@ -1,10 +1,9 @@
 import express from "express";
-const app = express();
-app.use(cors());
-import dotenv from "dotenv";
-dotenv.config();
 import cors from "cors";
+import dotenv from "dotenv";
 import mongoose, { connect } from "mongoose";
+const app = express();
+dotenv.config();
 import authRoute from './routes/auth.js'
 import planRoute from './routes/plan.js'
 import { verifyAccessToken } from "./util/verifyToken.js";
@@ -12,6 +11,7 @@ import cookieParser from "cookie-parser";
 
 const port = process.env.PORT || 4500;
 
+app.use(cors());
 app.use(cookieParser())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
