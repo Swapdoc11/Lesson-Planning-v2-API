@@ -20,7 +20,7 @@ app.use('/api/plan',verifyAccessToken,planRoute)
 
 app.use((err,req,res,next)=>{
     res.status(err.status || 500).json({
-        err_msg:err.message,
+        message:err.message,
         status:err.status,
         stack:err.stack
     })

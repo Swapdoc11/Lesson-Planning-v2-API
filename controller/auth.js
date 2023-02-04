@@ -16,7 +16,7 @@ export const login = async (req, res, next) => {
       process.env.ACCESS_TOKEN
     );
     const { password, ...restOfDetails } = user._doc;
-    console.log(token);
+    //console.log(token);
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
@@ -29,9 +29,7 @@ export const register = async (req, res, next) => {
   try {
     const password = bcrypt.hashSync(req.body.password, 10);
     const user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      
+     ...req.body,
       password: password,
     });
     const result = await user.save();
