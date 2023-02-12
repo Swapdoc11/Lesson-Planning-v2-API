@@ -12,7 +12,7 @@ export const login = async (req, res, next) => {
     if (result === false) return next(createError(401, "Invalid Credential"));
 
     const token = jwt.sign(
-      { id: user._id, email: user.email },
+      { id: user._id, isAdmin: user.isAdmin },
       process.env.ACCESS_TOKEN
     );
     const { password, ...restOfDetails } = user._doc;

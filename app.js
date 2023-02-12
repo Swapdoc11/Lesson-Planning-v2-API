@@ -8,6 +8,7 @@ import authRoute from './routes/auth.js'
 import planRoute from './routes/plan.js'
 import { verifyAccessToken } from "./util/verifyToken.js";
 import cookieParser from "cookie-parser";
+import informationRoute from "./routes/information.js";
 
 const port = process.env.PORT || 4500;
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use('/api/auth',authRoute)
 app.use('/api/plan',verifyAccessToken,planRoute)
+app.use('/api/information',verifyAccessToken,informationRoute)
 
 app.use((err,req,res,next)=>{
     res.status(err.status || 500).json({

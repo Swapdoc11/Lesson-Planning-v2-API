@@ -41,10 +41,10 @@ export const deletePlan = async (req, res, next) => {
   try {
     if (!req.params.id) next(createError(401, "Bad Request"));
 
-    const deletedPlan = await Plan.findByIdAndDelete(req.body.id);
+    const deletedPlan = await Plan.findByIdAndDelete(req.params.planid);
     try {
       await User.findByIdAndUpdate(req.params.id, {
-        $pull: { plans: req.body.id },
+        $pull: { plans: req.params.planid },
       });
     } catch (error) {
       next(error);
